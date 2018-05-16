@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ExtensionActivex</title>
+</head>
+<body>
+<object id="objCliente" name="objCliente" classid="clsid:DD452733-2BD7-4BA7-883C-A756AC338A3E"></object>
+
+<script type="text/javascript" for="objCliente" event="Evento(nombre)">
+	alert(nombre);
+</script>
+
+<script type="text/javascript">
+	function saludarPorNombre(nombre){
+		objCliente.SaludarPorNombre(nombre);
+	}
+
+	function invocarEvento(nombre){
+		var aleatorio = objCliente.GenerarAleatorio(nombre);
+		alert(aleatorio);
+	}
+
+	invocarEvento("Patrick Salguero");
+</script>
+
+</body>
+</html>
