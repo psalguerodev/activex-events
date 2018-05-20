@@ -8,8 +8,9 @@ using System.Windows.Forms;
 
 namespace ExtensionActiveX
 {
-    public class ProcesoAsincrono : Form
+    public class ProcesoAsincrono : ContainerControl
     {
+
         public delegate void ManejadorAsincrono(string data);
         public event ManejadorAsincrono EventoAsincrono;
 

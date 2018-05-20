@@ -37,15 +37,7 @@ namespace ExtensionActiveX
 
         private void Formulario_Load(object sender, EventArgs e)
         {
-            //Cargando el formulario
-            //int filascantidad = filasListBox.Count;
-            //if (filascantidad > 0)
-            //{
-            //    for (int i = 0; i < filasListBox.Count; i++)
-            //    { 
-            //        //Iterando filas
-            //    }
-            //}
+            listBox.Items.Add(String.Format("{0,-40}", "USUARIO: XT7226"));
         }
 
         

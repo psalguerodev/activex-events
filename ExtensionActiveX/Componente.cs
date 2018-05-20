@@ -39,8 +39,12 @@ namespace ExtensionActiveX
 
         public void SaludarPorNombre(string nombre)
         {
+            Service1 servicio = new Service1();
+            servicio.EventoServicio += new Service1.ManejadorService(ejecutarEventoFormulario);
+            servicio.initService();
+
             MessageBox.Show(String.Format(" >> Bienvenido al Componente Activex {0} sigue avanzando!!", nombre.ToUpper()), "Mensaje desde Active X", MessageBoxButtons.OK);
-            ejecutarEventoFormulario("DATO >>> " + nombre.ToUpper());
+            ejecutarEventoFormulario("SERVICIO INICIADO >>> " + nombre.ToUpper());
         }
 
         public int GenerarAleatorio(string nombre){
@@ -68,6 +72,7 @@ namespace ExtensionActiveX
             Evento(texto);
         }
 
+        
 
 
     }

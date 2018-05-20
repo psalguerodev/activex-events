@@ -13,7 +13,7 @@
 </script>
 
 <script for="ExtensionActiveX" event="Evento(nombre)">
-	document.getElementById("VALOR-EVENTO").innerHTML = nombre;
+	ejercutarCallback(nombre);
 </script>
 
 <script language="javascript" type="text/javascript">
@@ -38,6 +38,10 @@
 		}catch(ex){
 			alert("Error : " + ex)
 		}
+	}
+
+	function ejercutarCallback(data){
+		document.getElementById("VALOR-EVENTO").innerHTML = data;	
 	}
 
 </script>
