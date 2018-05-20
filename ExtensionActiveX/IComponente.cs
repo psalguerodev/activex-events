@@ -17,6 +17,6 @@ namespace ExtensionActiveX
         int GenerarAleatorio(string nombre);
 
         [DispId(3)]
-        void ProcesoAsinc(string data);
+        int ProcesoAsinc(string data);
     }
 }

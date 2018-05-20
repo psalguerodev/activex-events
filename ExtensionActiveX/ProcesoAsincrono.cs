@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ExtensionActiveX
 {
-    public class ProcesoAsincrono
+    public class ProcesoAsincrono : Form
     {
         public delegate void ManejadorAsincrono(string data);
         public event ManejadorAsincrono EventoAsincrono;
@@ -31,18 +31,18 @@ namespace ExtensionActiveX
 
         public void procesoback(string data)
         {
-            worker.WorkerReportsProgress= true;
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += DoWorkPersonal;
-            worker.RunWorkerCompleted += DoWorkCompleto;
-            worker.RunWorkerAsync();
+            if (worker.IsBusy != true) {
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = false;
+                worker.DoWork += DoWorkPersonal;
+                worker.RunWorkerCompleted += DoWorkCompleto;
+                worker.RunWorkerAsync();    
+            }
             
         }
 
-
         public void DoWorkPersonal(object sender, DoWorkEventArgs eventos) {
             BackgroundWorker worker = sender as BackgroundWorker;
-            //MessageBox.Show("INICIANDO WORKER");
             Thread.Sleep(5000);
             worker.ReportProgress(100);
         }
@@ -50,6 +50,7 @@ namespace ExtensionActiveX
         public void DoWorkCompleto(object sender, RunWorkerCompletedEventArgs eventos)
         {
             EventoAsincrono("PROCESO ASINCRONO TERMINADO");
+            
         }
 
 

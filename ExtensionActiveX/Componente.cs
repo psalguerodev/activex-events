@@ -40,6 +40,7 @@ namespace ExtensionActiveX
         public void SaludarPorNombre(string nombre)
         {
             MessageBox.Show(String.Format(" >> Bienvenido al Componente Activex {0} sigue avanzando!!", nombre.ToUpper()), "Mensaje desde Active X", MessageBoxButtons.OK);
+            ejecutarEventoFormulario("DATO >>> " + nombre.ToUpper());
         }
 
         public int GenerarAleatorio(string nombre){
@@ -50,17 +51,19 @@ namespace ExtensionActiveX
             return (int)DateTime.Now.Ticks;
         }
 
-        public void ProcesoAsinc(string data)
+        public int ProcesoAsinc(string data)
         {
-            //MessageBox.Show("INICIANDO PROCESO ASINCRONO");
+            Evento("INICIANDO ASYNC");
             ProcesoAsincrono proc = new ProcesoAsincrono();
             proc.EventoAsincrono += new ProcesoAsincrono.ManejadorAsincrono(ejecutarEventoFormulario);
             proc.procesoback(data);
+            return 0;
         }
 
         #endregion
 
-        public void ejecutarEventoFormulario(string texto){
+        // Metodo que atrapa los eventos de las Clases Externas
+        private void ejecutarEventoFormulario(string texto){
             if(Evento != null)
             Evento(texto);
         }
