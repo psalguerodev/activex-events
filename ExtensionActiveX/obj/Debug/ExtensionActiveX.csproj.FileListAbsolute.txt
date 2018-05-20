@@ -2,3 +2,5 @@ c:\users\patrick salguero\documents\visual studio 2010\Projects\ExtensionActiveX
 c:\users\patrick salguero\documents\visual studio 2010\Projects\ExtensionActiveX\ExtensionActiveX\bin\Debug\ExtensionActiveX.pdb
 c:\users\patrick salguero\documents\visual studio 2010\Projects\ExtensionActiveX\ExtensionActiveX\obj\Debug\ExtensionActiveX.dll
 c:\users\patrick salguero\documents\visual studio 2010\Projects\ExtensionActiveX\ExtensionActiveX\obj\Debug\ExtensionActiveX.pdb
+C:\Users\Patrick Salguero\documents\visual studio 2010\Projects\ExtensionActiveX\ExtensionActiveX\obj\Debug\ExtensionActiveX.Formulario.resources
+C:\Users\Patrick Salguero\documents\visual studio 2010\Projects\ExtensionActiveX\ExtensionActiveX\obj\Debug\ExtensionActiveX.csproj.GenerateResource.Cache

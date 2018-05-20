@@ -4,24 +4,51 @@
 	<title>ExtensionActivex</title>
 </head>
 <body>
-<object id="objCliente" name="objCliente" classid="clsid:DD452733-2BD7-4BA7-883C-A756AC338A3E"></object>
 
-<script type="text/javascript" for="objCliente" event="Evento(nombre)">
-	alert(nombre);
-</script>
+
+<object id="ExtensionActiveX" name="ExtensionActiveX" classid="clsid:DD452733-2BD7-4BA7-883C-A756AC338A3E"></object>
 
 <script type="text/javascript">
+	window.objectLoadFailure = false;
+</script>
+
+<script for="ExtensionActiveX" event="Evento(nombre)">
+	document.getElementById("VALOR-EVENTO").innerHTML = nombre;
+</script>
+
+<script language="javascript" type="text/javascript">
 	function saludarPorNombre(nombre){
-		objCliente.SaludarPorNombre(nombre);
+		ExtensionActiveX.SaludarPorNombre(nombre);
 	}
 
 	function invocarEvento(nombre){
-		var aleatorio = objCliente.GenerarAleatorio(nombre);
-		alert(aleatorio);
+		try{
+			var aleatorio = ExtensionActiveX.GenerarAleatorio(nombre);
+			console.log("Valor del Aleatorio: " + aleatorio );
+
+		}catch(ex) { 
+			alert("Error: " + ex.message )
+			console.log(ex)
+		}
 	}
 
-	invocarEvento("Patrick Salguero");
+	function procesoAsincrono(data){
+		try{
+			var res = ExtensionActiveX.ProcesoAsinc(data);
+		}catch(ex){
+			alert("Error : " + ex)
+		}
+	}
+
 </script>
+
+	<button onclick="saludarPorNombre('Patrick Salguero')">Saludo por Nombre</button>
+	<button onclick="invocarEvento('Patrick Salguero')">Invocar Evento</button>
+	<button onclick="procesoAsincrono('PROCESO >>>> HTML')">Proceso Asincrono</button>
+
+	<BR><BR>
+	<div id="VALOR-EVENTO" style="color:blue; font-family: Arial; font-size: 24px;float: right;border: 1px solid #ccc; padding: 10px;"></div>
+
 
 </body>
 </html>

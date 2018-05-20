@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Threading;
 namespace ExtensionActiveX
 {
-    [ProgId("ExtensionActiveX.Componente")]
-    [ClassInterface(ClassInterfaceType.None)]
+    [ProgId("ExtensionActiveX")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     [Guid("DD452733-2BD7-4BA7-883C-A756AC338A3E")]
-    [ComDefaultInterface(typeof(IComponente))]
+    [ComSourceInterfaces(typeof(IEventos))]
     [ComVisible(true)]
     public class Componente : ISeguridad , IComponente
     {
@@ -38,16 +39,33 @@ namespace ExtensionActiveX
 
         public void SaludarPorNombre(string nombre)
         {
-            MessageBox.Show(String.Format("Bienvenido al Componente Activex {0} sigue avanzando!!", nombre.ToUpper()), "Mensaje desde Active X", MessageBoxButtons.OK);
+            MessageBox.Show(String.Format(" >> Bienvenido al Componente Activex {0} sigue avanzando!!", nombre.ToUpper()), "Mensaje desde Active X", MessageBoxButtons.OK);
         }
 
-        public int GenerarAleatorio(string nombre)
-        {
-            if (Evento != null)
-                Evento(nombre);
+        public int GenerarAleatorio(string nombre){
+            if (Evento != null) this.Evento("Soy el Evento gracias " + nombre.ToUpper());
+            Formulario display = new Formulario();
+            display.eventoFormulario += new Formulario.ManejadorFormulario(ejecutarEventoFormulario);
+            display.Show();
             return (int)DateTime.Now.Ticks;
         }
+
+        public void ProcesoAsinc(string data)
+        {
+            //MessageBox.Show("INICIANDO PROCESO ASINCRONO");
+            ProcesoAsincrono proc = new ProcesoAsincrono();
+            proc.EventoAsincrono += new ProcesoAsincrono.ManejadorAsincrono(ejecutarEventoFormulario);
+            proc.procesoback(data);
+        }
+
         #endregion
+
+        public void ejecutarEventoFormulario(string texto){
+            if(Evento != null)
+            Evento(texto);
+        }
+
+
 
     }
 }
